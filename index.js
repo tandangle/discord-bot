@@ -146,7 +146,7 @@ client.on("message", (message) => {
                 console.log(res.data.values);
                 let returnedValues = res.data.values;
                 foundIndex = returnedValues.findIndex(
-                  (element) => element[0] === args[0]
+                  (element) => element[0].toLowerCase() === args[0].toLowerCase() || element[0].replace(/'/g,'') === args[0].replace(/'/g,'')
                 );
                 console.log(foundIndex);
                 if (Math.sign(foundIndex) === 1 ) {
