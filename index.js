@@ -217,7 +217,6 @@ client.on("message", (message) => {
 });
 
 client.login(token);
-
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
  * given callback function.
