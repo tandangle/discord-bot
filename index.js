@@ -146,12 +146,14 @@ client.on("message", (message) => {
                 console.log(res.data.values);
                 let returnedValues = res.data.values;
                 foundIndex = returnedValues.findIndex(
-                  (element) => element[0].replace(/'/g,'').toLowerCase() === args[0].replace(/'/g,'').toLowerCase()
+                  (element) =>
+                    element[0].replace(/'/g, "").toLowerCase() ===
+                    args[0].replace(/'/g, "").toLowerCase()
                 );
                 console.log(foundIndex);
-                if (Math.sign(foundIndex) === 1 ) {
-                  existingValue = returnedValues[foundIndex][1]
-                  console.log(existingValue)
+                if (Math.sign(foundIndex) === 1) {
+                  existingValue = returnedValues[foundIndex][1];
+                  console.log(existingValue);
                   sheets.spreadsheets.values.update({
                     spreadsheetId: dataStorage[message.author.id].spreadsheetId,
                     range: `Sheet1!${String.fromCharCode(65 + foundIndex)}2`,
@@ -167,7 +169,9 @@ client.on("message", (message) => {
                         console.log(err);
                       } else {
                         console.log(res);
-                        message.channel.send(`Added ${args[1]} gold for ${args[0]}`)
+                        message.channel.send(
+                          `Added ${args[1]} gold for ${args[0]}`
+                        );
                       }
                     };
                 } else {
@@ -178,9 +182,9 @@ client.on("message", (message) => {
                     resource: {
                       range: `Sheet1!A${returnedValues.length + 1}`,
                       majorDimension: "ROWS",
-                      values: [[args[0]]]
+                      values: [[args[0]]],
                     },
-                  })
+                  });
                   sheets.spreadsheets.values.update({
                     spreadsheetId: dataStorage[message.author.id].spreadsheetId,
                     range: `Sheet1!B${returnedValues.length + 1}`,
@@ -190,8 +194,9 @@ client.on("message", (message) => {
                       majorDimension: "ROWS",
                       values: [[args[1]]],
                     },
-                  })
-                } message.channel.send(`Added ${args[1]} gold for ${args[0]}`);
+                  });
+                }
+                message.channel.send(`Added ${args[1]} gold for ${args[0]}`);
               } else {
                 console.log("No data found.");
               }
